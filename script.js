@@ -63,7 +63,9 @@ const displayDetiles = phoneInfo => {
      <div class="col-md-8">
          <div class="card-body">
              <h2 class="card-title text-capitalize">${phoneInfo.data.name}</h2>
+             <h5 class="card-title text-capitalize">${phoneInfo.data.releaseDate}</h5>
              <p class="card-text card-footer border-primary"> Storage: ${Object.values(phoneInfo.data.mainFeatures)}</p >
+             <p class="card-text card-footer border-primary"> others: ${Object.values(phoneInfo.data.others)}</p >
              <p class="card-text card-footer border-primary">Sensors: ${Object.values(phoneInfo.data.mainFeatures.sensors)}</p >
           
          </div >
