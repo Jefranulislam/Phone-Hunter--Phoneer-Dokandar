@@ -4,20 +4,29 @@ const searchButton = () => {
     // console.log(searchFiledText);
 
     searchFiled.value = '';
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchFiledText}`
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displaySearchResult(data.data));
-
+    if (searchFiled == '') {
+        alert("Please Input Somthings")
+    }
+    else {
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchFiledText}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displaySearchResult(data.data));
+    }
 }
 
 const displaySearchResult = data => {
     const searchResultCol = document.getElementById('searchResultCol');
-    data.forEach(data => {
-        // console.log(data);
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML = ` <div class="card h-100">
+    searchResultCol.innerHTML = '';
+    if (data.length == 0) {
+        alert('No Result Found');
+    }
+    else {
+        data.forEach(data => {
+            // console.log(data);
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = ` <div class="card h-100">
         <img src="${data.image}" class="card-img-top w-75 mx-auto p-4" alt="...">
         <div class="card-body">
             <h5 class="card-title">${data.phone_name}</h5>
@@ -27,9 +36,10 @@ const displaySearchResult = data => {
         <button onclick="phoneDetilesId('${data.slug}')" class="btn btn-primary" type="button">Learn More</button>
         </div>
     </div>`
-        searchResultCol.appendChild(div);
+            searchResultCol.appendChild(div);
 
-    });
+        });
+    }
 }
 
 
@@ -39,7 +49,7 @@ const phoneDetilesId = slugs => {
 
     fetch(slugurl)
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => displayDetiles(data));
 }
 
 const displayDetiles = phoneInfo => {
@@ -48,15 +58,19 @@ const displayDetiles = phoneInfo => {
     div.classList.add('card');
     div.innerHTML = `<div class="row g-0 alert-primary">
      <div class="col-md-4">
-         <img src="${phoneInfo.data.image}" class="img-fluid rounded-start " alt="...">
+         <img src="${phoneInfo.data.image}" class="img-fluid rounded-start mx-auto p-3 " alt="...">
      </div>
      <div class="col-md-8">
          <div class="card-body">
-             <h5 class="card-title">${phoneInfo.data.name}</h5>
-             <p class="card-text">${phoneInfo.data.releaseDate}</p>
-             <p class="card-text">${phoneInfo.data.main}</p>
-         </div>
-     </div>
- </div>`
+             <h2 class="card-title text-capitalize">${phoneInfo.data.name}</h2>
+             <p class="card-text card-footer border-primary"> Storage: ${Object.values(phoneInfo.data.mainFeatures)}</p >
+             <p class="card-text card-footer border-primary">Sensors: ${Object.values(phoneInfo.data.mainFeatures.sensors)}</p >
+          
+         </div >
+     </div >
+ </div > `
+
+
     phonedetils.appendChild(div);
+
 }
