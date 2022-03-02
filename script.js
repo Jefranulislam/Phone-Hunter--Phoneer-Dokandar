@@ -2,7 +2,7 @@ const searchButton = () => {
     const searchFiled = document.getElementById('searchFiled');
     const searchFiledText = searchFiled.value;
     // console.log(searchFiledText);
-
+    searchFiled.textContent = '';
     searchFiled.value = '';
     if (searchFiled == '') {
         alert("Please Input Somthings")
@@ -17,7 +17,7 @@ const searchButton = () => {
 
 const displaySearchResult = data => {
     const searchResultCol = document.getElementById('searchResultCol');
-    searchResultCol.innerHTML = '';
+    searchResultCol.textContent = '';
     if (data.length == 0) {
         alert('No Result Found');
     }
@@ -37,9 +37,6 @@ const displaySearchResult = data => {
         </div>
     </div>`
             searchResultCol.appendChild(div);
-            function scrollWin() {
-                window.scrollTo(100, 0);
-            }
 
         });
 
@@ -61,7 +58,6 @@ const phoneDetilesId = slugs => {
 const displayDetiles = phoneInfo => {
     const phonedetils = document.getElementById('phoneDisplayDetiles');
     phonedetils.textContent = '';
-
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `<div class="row g-0 alert-primary">
@@ -78,7 +74,7 @@ const displayDetiles = phoneInfo => {
              <p class="card-text card-footer border-primary"><b> Sensors:</b> ${phoneInfo.mainFeatures.sensors}</p >
              <p class="card-text card-footer border-primary"> <b>Storage: </b> ${phoneInfo.mainFeatures.storage}</p >
              <p class="card-text card-footer border-primary"><b> Others: </b></p >
-             <p class="card-text "> Bluetooth: ${phoneInfo.others.Bluetooth} </p >
+             <p class="card-text "> Bluetooth: ${phoneInfo.others.bluetooth} </p >
              <p class="card-text "> GPS: ${phoneInfo.others.GPS} </p >
              <p class="card-text "> NFC: ${phoneInfo.others.NFC} </p >
              <p class="card-text "> Radio: ${phoneInfo.others.Radio} </p >
