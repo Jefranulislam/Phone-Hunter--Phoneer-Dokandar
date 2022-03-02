@@ -33,13 +33,19 @@ const displaySearchResult = data => {
             <p class="card-text">Brand: ${data.brand}</p>
         </div>
         <div class="card-footer d-grid gap-2 alert-primary ">
-        <button onclick="phoneDetilesId('${data.slug}')" class="btn btn-primary" type="button">Learn More</button>
+        <button onclick="phoneDetilesId('${data.slug}') ,window.scrollTo(100, 0)" class="btn btn-primary" type="button">Learn More</button>
         </div>
     </div>`
             searchResultCol.appendChild(div);
+            function scrollWin() {
+                window.scrollTo(100, 0);
+            }
 
         });
+
     }
+
+
 }
 
 
@@ -55,6 +61,7 @@ const phoneDetilesId = slugs => {
 const displayDetiles = phoneInfo => {
     const phonedetils = document.getElementById('phoneDisplayDetiles');
     phonedetils.textContent = '';
+
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `<div class="row g-0 alert-primary">
@@ -64,13 +71,13 @@ const displayDetiles = phoneInfo => {
      <div class="col-md-8">
          <div class="card-body">
              <h2 class="card-title text-capitalize">${phoneInfo.name}</h2>
-             <h5 class="card-title text-capitalize">${phoneInfo.releaseDate}</h5>
-             <p class="card-text card-footer border-primary"> Chipset: ${phoneInfo.mainFeatures.chipSet}</p >
-             <p class="card-text card-footer border-primary"> Display Size: ${phoneInfo.mainFeatures.displaySize}</p >
-             <p class="card-text card-footer border-primary"> Memory: ${phoneInfo.mainFeatures.memory}</p >
-             <p class="card-text card-footer border-primary"> Sensors: ${phoneInfo.mainFeatures.sensors}</p >
-             <p class="card-text card-footer border-primary"> Storage: ${phoneInfo.mainFeatures.storage}</p >
-             <p class="card-text card-footer border-primary"> Others:</p >
+             <h5 class="card-title text-capitalize">${phoneInfo.releaseDate}</h5 >
+             <p class="card-text card-footer border-primary"> <b>Chipset:</b> ${phoneInfo.mainFeatures.chipSet}</p >
+             <p class="card-text card-footer border-primary"> <b>Display Size:</b> ${phoneInfo.mainFeatures.displaySize}</p >
+             <p class="card-text card-footer border-primary"> <b>Memory: </b> ${phoneInfo.mainFeatures.memory}</p >
+             <p class="card-text card-footer border-primary"><b> Sensors:</b> ${phoneInfo.mainFeatures.sensors}</p >
+             <p class="card-text card-footer border-primary"> <b>Storage: </b> ${phoneInfo.mainFeatures.storage}</p >
+             <p class="card-text card-footer border-primary"><b> Others: </b></p >
              <p class="card-text "> Bluetooth: ${phoneInfo.others.Bluetooth} </p >
              <p class="card-text "> GPS: ${phoneInfo.others.GPS} </p >
              <p class="card-text "> NFC: ${phoneInfo.others.NFC} </p >
@@ -81,7 +88,7 @@ const displayDetiles = phoneInfo => {
      </div >
  </div > `
 
-
     phonedetils.appendChild(div);
+
 
 }
