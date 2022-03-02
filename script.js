@@ -49,25 +49,34 @@ const phoneDetilesId = slugs => {
 
     fetch(slugurl)
         .then(res => res.json())
-        .then(data => displayDetiles(data));
+        .then(data => displayDetiles(data.data));
 }
 
 const displayDetiles = phoneInfo => {
     const phonedetils = document.getElementById('phoneDisplayDetiles');
+    phonedetils.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `<div class="row g-0 alert-primary">
      <div class="col-md-4">
-         <img src="${phoneInfo.data.image}" class="img-fluid rounded-start mx-auto p-3 " alt="...">
+         <img src="${phoneInfo.image}" class="img-fluid rounded-2 justify-content-center mx-auto w-100  p-3 " alt="...">
      </div>
      <div class="col-md-8">
          <div class="card-body">
-             <h2 class="card-title text-capitalize">${phoneInfo.data.name}</h2>
-             <h5 class="card-title text-capitalize">${phoneInfo.data.releaseDate}</h5>
-             <p class="card-text card-footer border-primary"> Storage: ${Object.values(phoneInfo.data.mainFeatures)}</p >
-             <p class="card-text card-footer border-primary"> others: ${Object.values(phoneInfo.data.others)}</p >
-             <p class="card-text card-footer border-primary">Sensors: ${Object.values(phoneInfo.data.mainFeatures.sensors)}</p >
-          
+             <h2 class="card-title text-capitalize">${phoneInfo.name}</h2>
+             <h5 class="card-title text-capitalize">${phoneInfo.releaseDate}</h5>
+             <p class="card-text card-footer border-primary"> Chipset: ${phoneInfo.mainFeatures.chipSet}</p >
+             <p class="card-text card-footer border-primary"> Display Size: ${phoneInfo.mainFeatures.displaySize}</p >
+             <p class="card-text card-footer border-primary"> Memory: ${phoneInfo.mainFeatures.memory}</p >
+             <p class="card-text card-footer border-primary"> Sensors: ${phoneInfo.mainFeatures.sensors}</p >
+             <p class="card-text card-footer border-primary"> Storage: ${phoneInfo.mainFeatures.storage}</p >
+             <p class="card-text card-footer border-primary"> Others:</p >
+             <p class="card-text "> Bluetooth: ${phoneInfo.others.Bluetooth} </p >
+             <p class="card-text "> GPS: ${phoneInfo.others.GPS} </p >
+             <p class="card-text "> NFC: ${phoneInfo.others.NFC} </p >
+             <p class="card-text "> Radio: ${phoneInfo.others.Radio} </p >
+             <p class="card-text "> WLAN: ${phoneInfo.others.WLAN} </p >
+
          </div >
      </div >
  </div > `
